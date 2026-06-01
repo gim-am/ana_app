@@ -51,6 +51,7 @@
 		value: number;
 		flagLabel: string;
 		within10: boolean | null;
+		within10Van: boolean | null;
 	}
 	// Static tree — built once from referenceJson, no row data
 	interface StaticMetricNode {
@@ -58,6 +59,7 @@
 		label: string | null;
 		indicatorLabel: string;
 		threshold: number | null;
+		vanThreshold: number | null;
 		direction: string | null;
 	}
 	interface StaticSubfactorNode {
@@ -378,6 +380,7 @@
 								label: met.label ?? null,
 								indicatorLabel,
 								threshold: typeof met.thresholds?.an === 'number' ? met.thresholds.an : null,
+								vanThreshold: typeof met.thresholds?.van === 'number' && met.thresholds.van !== met.thresholds.an ? met.thresholds.van : null,
 								direction: met.above_or_below ?? null
 							});
 						}
@@ -407,11 +410,13 @@
 				const flagLabel = String(row[`${key}_status`] ?? 'no_data');
 				if (flagLabel === 'no_data') continue;
 				const w10 = row[`${key}_within_10perc`];
+				const w10van = row[`${key}_within_10perc_van`];
 				const entry: DotData = {
 					uoa: String(row.uoa),
 					value,
 					flagLabel,
-					within10: typeof w10 === 'boolean' ? w10 : null
+					within10: typeof w10 === 'boolean' ? w10 : null,
+					within10Van: typeof w10van === 'boolean' ? w10van : null
 				};
 				const bucket = index.get(key);
 				if (bucket) bucket.push(entry);

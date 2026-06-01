@@ -13,7 +13,8 @@ export function dotFill(status: string): string {
 
 // ── Stroke ────────────────────────────────────────────────────────────────────
 
-export function dotStroke(_status: string, within10: boolean | null): string {
+export function dotStroke(_status: string, within10: boolean | null, within10Van: boolean | null = null): string {
+	if (within10Van) return 'var(--color-within10-van)';
 	if (within10) return 'var(--color-within10)';
 	return 'none';
 }

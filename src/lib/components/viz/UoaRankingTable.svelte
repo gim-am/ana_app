@@ -27,6 +27,7 @@
 		flaggedSystems: number;
 		flaggedIndicators: number;
 		within10: number;
+		within10Van: number;
 	}
 
 	const PRELIM_ORDER = PRIORITY_ORDER;
@@ -37,13 +38,14 @@
 		const ranked: RankedRow[] = rows.map((row) => {
 			const uoa = String(row.uoa ?? '');
 			const priority_flag = String(row.priority_flag ?? '');
-			let flaggedSystems = 0, flaggedIndicators = 0, within10 = 0;
+			let flaggedSystems = 0, flaggedIndicators = 0, within10 = 0, within10Van = 0;
 			for (const sys of systems) {
 				const codes = systemCodes.get(sys.id) ?? [];
 				let sysFlagged = false;
 				for (const c of codes) {
 					if (row[`${c}_flag`] === true) { flaggedIndicators++; sysFlagged = true; }
 					if (row[`${c}_flag`] !== true && row[`${c}_within_10perc`] === true) within10++;
+					if (row[`${c}_van_flag`] !== true && row[`${c}_within_10perc_van`] === true) within10Van++;
 				}
 				if (sysFlagged) flaggedSystems++;
 			}
@@ -51,7 +53,7 @@
 			if (ACUTE_FLAGS.has(priority_flag as PriorityFlag)) flagged++;
 			totalFlags += flaggedIndicators;
 			totalWithin10 += within10;
-			return { uoa, priority_flag, flaggedSystems, flaggedIndicators, within10 };
+			return { uoa, priority_flag, flaggedSystems, flaggedIndicators, within10, within10Van };
 		});
 
 		const sorted = [...ranked].sort((a, b) => {
@@ -67,7 +69,7 @@
 		return {
 			summary: { total, flagged, totalFlags, totalWithin10 },
 			tableRows: sorted.map((r) => ({
-				UoA: r.uoa, Flag: r.priority_flag, Systems: r.flaggedSystems, Metrics: r.flaggedIndicators, Near: r.within10
+				UoA: r.uoa, Flag: r.priority_flag, Systems: r.flaggedSystems, Metrics: r.flaggedIndicators, NearAN: r.within10, NearVAN: r.within10Van
 			})),
 			rankedByUoa: new Map(ranked.map((r) => [r.uoa, r]))
 		};
@@ -129,8 +131,9 @@
 				UoA: { extraClass: 'text-center' },
 				Flag: { extraClass: 'text-center' },
 				Systems: { extraClass: 'text-center' },
-				Indicators: { extraClass: 'text-center' },
-				Near: { extraClass: 'text-center' }
+				Metrics: { extraClass: 'text-center' },
+				NearAN: { extraClass: 'text-center' },
+				NearVAN: { extraClass: 'text-center' }
 			}}
 			onrowclick={handleRowClick}
 		>
@@ -142,11 +145,17 @@
 						{value}
 					</span>
 					<span class="text-base-content/85 text-xs"> / {systems.length}</span>
-				{:else if col === 'Indicators'}
+				{:else if col === 'Metrics'}
 					<span class={Number(value) > 0 ? 'font-semibold' : 'text-base-content/65'}>{value}</span>
-				{:else if col === 'Near'}
+				{:else if col === 'NearAN'}
 					{#if Number(value) > 0}
-						<span class="badge badge-warning badge-sm">~{value}</span>
+						<span class="badge badge-sm" style="background-color: var(--color-within10); color: #fff;">~{value}</span>
+					{:else}
+						<span class="text-base-content/65">–</span>
+					{/if}
+				{:else if col === 'NearVAN'}
+					{#if Number(value) > 0}
+						<span class="badge badge-sm" style="background-color: var(--color-within10-van); color: #fff;">~{value}</span>
 					{:else}
 						<span class="text-base-content/65">–</span>
 					{/if}

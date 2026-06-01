@@ -29,8 +29,8 @@
 		onselect
 	}: Props = $props();
 
-	type CellStats = { avail: number; missing: number; flag_n: number; within10: number };
-	const EMPTY_STATS: CellStats = { avail: 0, missing: 0, flag_n: 0, within10: 0 };
+	type CellStats = { avail: number; missing: number; flag_n: number; within10: number; within10Van: number };
+	const EMPTY_STATS: CellStats = { avail: 0, missing: 0, flag_n: 0, within10: 0, within10Van: 0 };
 
 	// Precomputed per (uoa × system) so the template does a O(1) Map lookup instead of iterating codes each render.
 	const cellStatsMap = $derived.by(() => {
@@ -41,15 +41,17 @@
 				let avail = 0,
 					missing = 0,
 					flag_n = 0,
-					within10 = 0;
+					within10 = 0,
+					within10Van = 0;
 				for (const c of codes) {
 					const v = row[c];
 					if (v === null || v === undefined) missing++;
 					else avail++;
 					if (row[`${c}_flag`] === true) flag_n++;
 					else if (row[`${c}_within_10perc`] === true) within10++;
+					if (row[`${c}_van_flag`] !== true && row[`${c}_within_10perc_van`] === true) within10Van++;
 				}
-				map.set(`${String(row.uoa)}:${sys.id}`, { avail, missing, flag_n, within10 });
+				map.set(`${String(row.uoa)}:${sys.id}`, { avail, missing, flag_n, within10, within10Van });
 			}
 		}
 		return map;
@@ -62,6 +64,7 @@
 	let tooltipAvail = $state(0);
 	let tooltipMissing = $state(0);
 	let tooltipWithin10 = $state(0);
+	let tooltipWithin10Van = $state(0);
 	let tooltipSystem = $state('');
 
 	function showTooltip(
@@ -69,11 +72,13 @@
 		avail: number,
 		missing: number,
 		within10: number,
+		within10Van: number,
 		sysLabel: string
 	) {
 		tooltipAvail = avail;
 		tooltipMissing = missing;
 		tooltipWithin10 = within10;
+		tooltipWithin10Van = within10Van;
 		tooltipSystem = sysLabel;
 		tooltipX = e.clientX;
 		tooltipY = e.clientY;
@@ -134,7 +139,10 @@
 			{ color: 'var(--color-primary)', label: `Available: ${tooltipAvail}` },
 			{ color: 'var(--color-neutral)', label: `Missing: ${tooltipMissing}` },
 			...(tooltipWithin10 > 0
-				? [{ color: 'var(--color-within10)', label: `Near threshold: ${tooltipWithin10}` }]
+				? [{ color: 'var(--color-within10)', label: `Near AN: ${tooltipWithin10}` }]
+				: []),
+			...(tooltipWithin10Van > 0
+				? [{ color: 'var(--color-within10-van)', label: `Near VAN: ${tooltipWithin10Van}` }]
 				: [])
 		]}
 	/>
@@ -211,7 +219,7 @@
 										active
 									)}"
 									style={tileStyle(s.flag_n, s.avail)}
-									onmouseenter={(e) => showTooltip(e, s.avail, s.missing, s.within10, sys.label)}
+									onmouseenter={(e) => showTooltip(e, s.avail, s.missing, s.within10, s.within10Van, sys.label)}
 									onmousemove={moveTooltip}
 									onmouseleave={hideTooltip}
 									onclick={() => {
@@ -223,12 +231,23 @@
 										: ''} with flag for {sys.label}"
 								>
 									{s.avail === 0 ? '–' : s.flag_n}
-									{#if s.within10 > 0}
-										<span
-											class="badge badge-warning badge-xs absolute -top-1 -right-1 min-w-4"
-											title="{s.within10} metric{s.within10 !== 1 ? 's' : ''} near threshold"
-											>~{s.within10}</span
-										>
+									{#if s.within10 > 0 || s.within10Van > 0}
+										<div class="absolute -top-1 -right-1 flex flex-col items-end gap-0.5">
+											{#if s.within10 > 0}
+												<span
+													class="badge badge-xs min-w-4"
+													style="background-color: var(--color-within10); color: #fff;"
+													title="{s.within10} metric{s.within10 !== 1 ? 's' : ''} near AN threshold"
+												>~{s.within10}</span>
+											{/if}
+											{#if s.within10Van > 0}
+												<span
+													class="badge badge-xs min-w-4"
+													style="background-color: var(--color-within10-van); color: #fff;"
+													title="{s.within10Van} metric{s.within10Van !== 1 ? 's' : ''} near VAN threshold"
+												>~{s.within10Van}</span>
+											{/if}
+										</div>
 									{/if}
 								</button>
 							</td>

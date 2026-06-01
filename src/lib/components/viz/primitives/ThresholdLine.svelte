@@ -2,11 +2,14 @@
 	interface Props {
 		x: number;
 		height: number;
+		innerWidth?: number;
 		label?: string;
 		color?: string;
 	}
 
-	let { x, height, label = 'AN', color = 'var(--color-within10)' }: Props = $props();
+	let { x, height, innerWidth = Infinity, label = 'AN', color = 'var(--color-within10)' }: Props = $props();
+
+	const flipLabel = $derived(x + 20 > innerWidth);
 </script>
 
 <g class="threshold-line">
@@ -20,6 +23,13 @@
 		stroke-dasharray="4,3"
 	/>
 	{#if label}
-		<text x={x + 3} y={9} font-size="8" fill={color} font-weight="600">{label}</text>
+		<text
+			x={flipLabel ? x - 3 : x + 3}
+			y={9}
+			font-size="8"
+			fill={color}
+			font-weight="600"
+			text-anchor={flipLabel ? 'end' : 'start'}
+		>{label}</text>
 	{/if}
 </g>

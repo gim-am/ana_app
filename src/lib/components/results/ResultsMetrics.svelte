@@ -11,12 +11,14 @@
 		value: number;
 		flagLabel: string;
 		within10: boolean | null;
+		within10Van: boolean | null;
 	}
 	interface MetricBlock {
 		id: string;
 		label: string | null;
 		indicatorLabel: string;
 		threshold: number | null;
+		vanThreshold: number | null;
 		direction: string | null;
 		dots: DotData[];
 	}
@@ -106,11 +108,21 @@
 					<span
 						class="inline-block h-2.5 w-2.5 rounded-full ring-2 ring-(--color-within10) ring-offset-1"
 					></span>
-					Within 10% of threshold
+					Within 10% (AN)
+				</span>
+				<span class="flex items-center gap-1.5">
+					<span
+						class="inline-block h-2.5 w-2.5 rounded-full ring-2 ring-(--color-within10-van) ring-offset-1"
+					></span>
+					Within 10% (VAN)
 				</span>
 				<span class="flex items-center gap-1.5">
 					<span class="h-4 border-l-2 border-dashed border-(--color-within10)"></span>
 					<span class="font-mono text-xs text-(--color-within10)">AN</span> threshold
+				</span>
+				<span class="flex items-center gap-1.5">
+					<span class="h-4 border-l-2 border-dashed border-(--color-within10-van)"></span>
+					<span class="font-mono text-xs text-(--color-within10-van)">VAN</span> threshold
 				</span>
 			{/snippet}
 		</LegendBadge>
@@ -162,6 +174,7 @@
 															{#if visibleMetricIds.has(met.id)}
 																<MetricsStrip
 																	threshold={met.threshold}
+																	vanThreshold={met.vanThreshold}
 																	direction={met.direction}
 																	dots={met.dots}
 																	height={120}

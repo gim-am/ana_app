@@ -94,7 +94,7 @@
 	<div class="mb-1 flex items-center gap-1.5">
 		<span class="text-base font-semibold" style:color={titleColor ?? undefined}>{title}</span>
 		{#if badge}
-			<span class="badge {badge.cls} badge-sm" style={badge.style}>{badge.label}</span>
+			<span class="badge {badge.cls} badge-sm h-auto whitespace-normal" style={badge.style}>{badge.label}</span>
 		{/if}
 	</div>
 

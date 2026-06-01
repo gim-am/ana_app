@@ -60,13 +60,14 @@ const isNumber = (v: unknown): v is number => typeof v === 'number' && !Number.i
 /**
  * Build a mutate spec object for a single metric ID.
  *
- * OUTPUT COLUMNS (6 per metric):
+ * OUTPUT COLUMNS (7 per metric):
  * 1. {id}_flag                — boolean | null. AN threshold crossed.
  * 2. {id}_status              — 'flag' | 'no_flag' | 'no_data'. From AN flag.
  * 3. {id}_van_flag            — boolean | null. VAN threshold crossed (null if no VAN threshold).
  * 4. {id}_van_status          — 'flag' | 'no_flag' | 'no_data'. From VAN flag.
  * 5. {id}_within_10perc       — boolean | null. Value within 10% of AN threshold.
  * 6. {id}_within_10perc_change — boolean | null. Within 10% but not yet flagged.
+ * 7. {id}_within_10perc_van   — boolean | null. Within 10% of VAN threshold (null if no VAN or VAN === AN).
  */
 function makeMetricSpec(id: string, md: any): MutateSpec {
 	const flagKey = `${id}_flag`;
@@ -112,6 +113,13 @@ function makeMetricSpec(id: string, md: any): MutateSpec {
 			const pct = Math.abs((v - th) / th);
 			const met = dir === 'Above' ? v >= th : v <= th;
 			return pct <= 0.1 && !met;
+		},
+		[`${id}_within_10perc_van`]: (d) => {
+			if (van === null || van === th) return null;
+			const v = d[id];
+			if (!isNumber(v)) return null;
+			if (van === 0) return v === 0;
+			return Math.abs((v - van) / van) <= 0.1;
 		}
 	};
 }

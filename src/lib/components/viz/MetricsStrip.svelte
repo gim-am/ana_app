@@ -11,16 +11,18 @@
 		value: number;
 		flagLabel: string;
 		within10: boolean | null;
+		within10Van: boolean | null;
 	}
 
 	interface Props {
 		threshold: number | null;
+		vanThreshold?: number | null;
 		direction: string | null;
 		dots: DotData[];
 		height?: number;
 	}
 
-	let { threshold, direction, dots, height = 120 }: Props = $props();
+	let { threshold, vanThreshold = null, direction, dots, height = 120 }: Props = $props();
 
 	const MARGIN = { top: 8, right: 12, bottom: 24, left: 12 };
 	const R = 6;
@@ -48,6 +50,10 @@
 		if (threshold !== null) {
 			lo = Math.min(lo, threshold);
 			hi = Math.max(hi, threshold);
+		}
+		if (vanThreshold !== null) {
+			lo = Math.min(lo, vanThreshold);
+			hi = Math.max(hi, vanThreshold);
 		}
 		return scaleLinear().domain([lo, hi]).nice().range([0, dimensions.innerWidth]);
 	});
@@ -84,6 +90,7 @@
 	});
 
 	const thresholdX = $derived(threshold !== null ? xScale(threshold) : null);
+	const vanThresholdX = $derived(vanThreshold !== null ? xScale(vanThreshold) : null);
 
 	let tooltipDot: DotData | null = $state(null);
 	let tooltipX = $state(0);
@@ -94,7 +101,10 @@
 	{#if containerWidth > 0}
 		<Chart {dimensions}>
 			{#if thresholdX !== null}
-				<ThresholdLine x={thresholdX} height={dimensions.innerHeight} />
+				<ThresholdLine x={thresholdX} height={dimensions.innerHeight} innerWidth={dimensions.innerWidth} />
+			{/if}
+			{#if vanThresholdX !== null}
+				<ThresholdLine x={vanThresholdX} height={dimensions.innerHeight} innerWidth={dimensions.innerWidth} label="VAN" color="var(--color-within10-van)" />
 			{/if}
 			{#each placedDots as { x, y, dot } (dot.uoa)}
 				<DotMark
@@ -103,6 +113,7 @@
 					r={R}
 					flagLabel={dot.flagLabel}
 					within10={dot.within10}
+					within10Van={dot.within10Van}
 					onmouseenter={(e) => {
 						tooltipDot = dot;
 						tooltipX = e.clientX;
@@ -132,9 +143,11 @@
 		uoa={tooltipDot.uoa}
 		value={tooltipDot.value}
 		{threshold}
+		{vanThreshold}
 		{direction}
 		flagLabel={tooltipDot.flagLabel}
 		within10={tooltipDot.within10}
+		within10Van={tooltipDot.within10Van}
 		x={tooltipX}
 		y={tooltipY}
 	/>
