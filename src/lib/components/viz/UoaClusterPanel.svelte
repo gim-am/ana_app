@@ -146,7 +146,7 @@
 					{@const sysColor = systemBaseColor(ss.id)}
 					<button
 						type="button"
-						class="-mx-4 flex w-[calc(100%+2rem)] items-center gap-3 px-4 py-2 {ondrilldown
+						class="-mx-4 flex w-[calc(100%+2rem)] items-center gap-3 px-4 py-2 text-left {ondrilldown
 							? 'hover:bg-base-200 cursor-pointer'
 							: 'cursor-default'}"
 						onclick={() => ondrilldown?.(uoas[0], ss.id)}
