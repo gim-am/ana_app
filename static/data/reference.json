@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-29T12:32:15.691Z",
+  "generatedAt": "2026-08-16T06:52:41.324Z",
   "systems": [
     {
       "id": "mortality",
@@ -174,7 +174,7 @@
                       "level": "Health outcomes",
                       "preference": 1,
                       "evidence_type": "Predictor",
-                      "type": "num",
+                      "type": "int[0:5]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
@@ -274,7 +274,7 @@
                   "metrics": [
                     {
                       "metric": "MET010",
-                      "label": "Trends of acute malnutriton in the last 3 months",
+                      "label": "Reports of cases (or increasing trend) of acute malnutriton in the last 3 months",
                       "level": "Health outcomes",
                       "preference": 3,
                       "evidence_type": "Supporting evidence",
@@ -303,18 +303,18 @@
                   "metrics": [
                     {
                       "metric": "MET011",
-                      "label": "Qualitative reports of stock-outs of RUTF/ RUSF nutrition supplements/products in the last 3 months (% stock-out)",
+                      "label": "Qualitative reports of stock-outs of RUTF/ RUSF nutrition supplements/products in the last 3 months",
                       "level": "Health outcomes",
                       "preference": 3,
                       "evidence_type": "Supporting evidence",
-                      "type": "num[0:1]",
+                      "type": "int[0:1]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
                       "remarks_limitations": null,
                       "thresholds": {
-                        "an": 0.5,
-                        "van": 0.7
+                        "an": 1,
+                        "van": null
                       },
                       "van_is_strict": null,
                       "above_or_below": "Above",
@@ -332,7 +332,7 @@
                   "metrics": [
                     {
                       "metric": "MET012",
-                      "label": "Qualitative reports of number of community outreach, referrals and community screenings of malnutrition in last 1 month",
+                      "label": "Qualitative reports of community outreach, referrals and community screenings of malnutrition in last 1 month",
                       "level": "Health outcomes",
                       "preference": 3,
                       "evidence_type": "Supporting evidence",
@@ -346,7 +346,7 @@
                         "van": null
                       },
                       "van_is_strict": null,
-                      "above_or_below": "Below",
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Vulnerability",
@@ -533,7 +533,7 @@
                       "level": "Health outcomes",
                       "preference": 1,
                       "evidence_type": "Predictor",
-                      "type": "num[0+]",
+                      "type": "int[0+]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
@@ -918,7 +918,7 @@
                   "metrics": [
                     {
                       "metric": "MET032",
-                      "label": "Breastfed (6-8 months) => 2 times Breastfed (9-23 months) => 3 times Not breastfed (6-23 months) => 4 times",
+                      "label": "% of children 6–23 months of age who consumed solid, semi-solid or soft foods (but also including milk feeds for non-breastfed children) the minimum number of times or more during the previous day\n\nBreastfed (6-8 months) => 2 times \nBreastfed (9-23 months) => 3 times \nNot breastfed (6-23 months) => 4 times",
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
                       "evidence_type": "AN signal",
@@ -953,7 +953,7 @@
                   "metrics": [
                     {
                       "metric": "MET033",
-                      "label": "consumption of4 out of 8 food groups (for breastfed) or â¥5 (for non-breastfed children, including milk feeds)",
+                      "label": "% of children 6–23 months of age who consumed foods and beverages from at least five out of eight defined food groups during the previous day\n\n(note: the 8 food groups should include breastmilk as a food group)",
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
                       "evidence_type": "AN signal",
@@ -1122,8 +1122,8 @@
                   ]
                 },
                 {
-                  "id": "",
-                  "label": "",
+                  "id": "rcsi",
+                  "label": "rCSI",
                   "metrics": [
                     {
                       "metric": "MET039",
@@ -1400,7 +1400,7 @@
                   "metrics": [
                     {
                       "metric": "MET048",
-                      "label": "% of localities where very insufficient or no food available % of localities where not enough food is available on markets",
+                      "label": "% of localities where very insufficient or no food available (alternatively % of localities where not enough food is available on markets)",
                       "level": "Contr. fact. individual and HH",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
@@ -1632,7 +1632,7 @@
                   "metrics": [
                     {
                       "metric": "MET053",
-                      "label": "% change in local food prices against previous year and five-year average (incl. seasonality)",
+                      "label": "% change in local food prices against previous year (incl. seasonality), alternatively % change in local food prices against five-year average",
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
                       "evidence_type": "Supporting evidence",
@@ -1690,7 +1690,7 @@
                   "metrics": [
                     {
                       "metric": "MET055",
-                      "label": "% change in ToTs for staple foods against previous year and five-year average, incl. seasonality",
+                      "label": "% change in ToTs for staple foods against previous year (incl. seasonality), alternatively % change in ToTs for staple foods against five-year average",
                       "level": "Contr. fact. individual and HH",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
@@ -1932,11 +1932,11 @@
                       "question_kobo_code": null,
                       "remarks_limitations": null,
                       "thresholds": {
-                        "an": 0.4,
-                        "van": 0.2
+                        "an": 0.6,
+                        "van": 0.8
                       },
                       "van_is_strict": null,
-                      "above_or_below": "Below",
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Exposure",
@@ -2385,7 +2385,7 @@
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
                       "evidence_type": "AN signal",
-                      "type": "int[0+]",
+                      "type": "num[0+]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
@@ -2414,7 +2414,7 @@
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
                       "evidence_type": "Supporting evidence",
-                      "type": "int[0+]",
+                      "type": "num[0+]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
@@ -2484,11 +2484,11 @@
                       "question_kobo_code": null,
                       "remarks_limitations": "Direct exposure risk",
                       "thresholds": {
-                        "an": 0.4,
-                        "van": 0.2
+                        "an": 0.2,
+                        "van": 0.4
                       },
                       "van_is_strict": true,
-                      "above_or_below": "Below",
+                      "above_or_below": "Above",
                       "evidence_threshold": 1,
                       "subfactor_threshold": 1,
                       "risk_concept": "Exposure",
@@ -2548,35 +2548,6 @@
                       "references_for_threshold": "Based on JMP service ladder (WHO/UNICEF). ANA analytical threshold indicates widespread use (>20% of HHs, significant share of HHs). \nhttps://washdata.org/topics/drinking-water"
                     }
                   ]
-                },
-                {
-                  "id": "jmp_ladder_for_drinking_water_unimproved_or_surface_water",
-                  "label": "JMP ladder for drinking water unimproved or surface water",
-                  "metrics": [
-                    {
-                      "metric": "MET087",
-                      "label": "% of HHs classified as unimproved or surface water on the JMP ladder for drinking water",
-                      "level": "Contr. fact. individual and HH",
-                      "preference": 1,
-                      "evidence_type": "AN signal",
-                      "type": "num[0:1]",
-                      "msna_module": null,
-                      "msna_indicator": null,
-                      "question_kobo_code": null,
-                      "remarks_limitations": "The JMP ladder is the preferred indicator to be used to inform on this sub-factor",
-                      "thresholds": {
-                        "an": 0.2,
-                        "van": 0.4
-                      },
-                      "van_is_strict": true,
-                      "above_or_below": "Above",
-                      "evidence_threshold": 1,
-                      "subfactor_threshold": 1,
-                      "risk_concept": "Exposure",
-                      "usual_data_sources": "MSNA",
-                      "references_for_threshold": null
-                    }
-                  ]
                 }
               ]
             }
@@ -2606,8 +2577,8 @@
                       "question_kobo_code": "composite indicator hwise-score",
                       "remarks_limitations": null,
                       "thresholds": {
-                        "an": 0.1,
-                        "van": 0.2
+                        "an": 0.2,
+                        "van": 0.4
                       },
                       "van_is_strict": true,
                       "above_or_below": "Above",
@@ -2615,7 +2586,7 @@
                       "subfactor_threshold": 1,
                       "risk_concept": "Exposure",
                       "usual_data_sources": "MSNA",
-                      "references_for_threshold": "Based on HWISE scale; no globally agreed severity cut-offs exist. ANA threshold reflects widespread household water insecurity (>50%). \nhttps://www.rural-water-supply.net/en/resources/991-"
+                      "references_for_threshold": "GWC PiN methdology severity 4 --> HWISE-score of 9 to 10\nBased on HWISE scale; no globally agreed severity cut-offs exist. ANA threshold reflects widespread household water insecurity (>50%). \nhttps://www.rural-water-supply.net/en/resources/991-"
                     },
                     {
                       "metric": "MET089",
@@ -2629,8 +2600,8 @@
                       "question_kobo_code": "composite indicator hwise-score",
                       "remarks_limitations": null,
                       "thresholds": {
-                        "an": 0.2,
-                        "van": 0.3
+                        "an": 0.1,
+                        "van": 0.2
                       },
                       "van_is_strict": true,
                       "above_or_below": "Above",
@@ -2638,14 +2609,14 @@
                       "subfactor_threshold": 1,
                       "risk_concept": "Exposure",
                       "usual_data_sources": "MSNA",
-                      "references_for_threshold": "Based on HWISE scale; no globally agreed severity cut-offs exist. ANA threshold reflects widespread household water insecurity (>50%). \nhttps://www.rural-water-supply.net/en/resources/991-"
+                      "references_for_threshold": "GWC PiN methdology severity 5 --> HWISE-score of 11 to 12\nBased on HWISE scale; no globally agreed severity cut-offs exist. ANA threshold reflects widespread household water insecurity (>50%). \nhttps://www.rural-water-supply.net/en/resources/991-"
                     },
                     {
                       "metric": "MET090",
                       "label": "% HHs with HWISE-4 score >= 4",
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
-                      "evidence_type": "AN signal",
+                      "evidence_type": "Supporting evidence",
                       "type": "num[0:1]",
                       "msna_module": "HWISE-4",
                       "msna_indicator": null,
@@ -2655,7 +2626,7 @@
                         "an": 0.5,
                         "van": 0.8
                       },
-                      "van_is_strict": true,
+                      "van_is_strict": null,
                       "above_or_below": "Above",
                       "evidence_threshold": 1,
                       "subfactor_threshold": 1,
@@ -2828,8 +2799,8 @@
               "label": "Access",
               "indicators": [
                 {
-                  "id": "phsyical_household_access_to_water",
-                  "label": "Phsyical household access to water",
+                  "id": "physical_household_access_to_water",
+                  "label": "Physical household access to water",
                   "metrics": [
                     {
                       "metric": "MET097",
@@ -3088,7 +3059,7 @@
                     },
                     {
                       "metric": "MET106",
-                      "label": "% change in water treatment materials",
+                      "label": "% change in price of water treatment materials",
                       "level": "Contr. fact. individual and HH",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
@@ -3295,7 +3266,7 @@
                       "level": "Contr. fact. individual and HH",
                       "preference": 3,
                       "evidence_type": "Supporting evidence",
-                      "type": "int[0:1]",
+                      "type": "num[0+]",
                       "msna_module": "Drinking water - water quality",
                       "msna_indicator": "% of households by water treatment method (XW14)\n% of households having had access to an improved drinking water source % of households by type of primary source of drinking water (W1)",
                       "question_kobo_code": "wash_drinking_water_safer_yn wash_drinking_water_safer_details\n\nwash_drinking_water_source",
@@ -3305,7 +3276,7 @@
                         "van": null
                       },
                       "van_is_strict": null,
-                      "above_or_below": null,
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Exposure",
@@ -3494,7 +3465,7 @@
                   "metrics": [
                     {
                       "metric": "MET119",
-                      "label": "Qualitative reports of exclusion of certain groups from programme staff",
+                      "label": "Qualitative reports (provided by programme staff) of exclusion of certain groups at water points",
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "Supporting evidence",
@@ -3657,7 +3628,7 @@
                   "metrics": [
                     {
                       "metric": "MET125",
-                      "label": "% change in tarpaulin or other shelter materials",
+                      "label": "% change in price of tarpaulin or other shelter materials",
                       "level": "Contr. fact. individual and HH",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
@@ -3752,7 +3723,7 @@
                         "van": null
                       },
                       "van_is_strict": null,
-                      "above_or_below": null,
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Exposure",
@@ -3829,7 +3800,7 @@
                       "level": "Contr. fact. individual and HH",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
-                      "type": "num",
+                      "type": "int[0:1]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
@@ -3918,7 +3889,7 @@
                   "metrics": [
                     {
                       "metric": "MET133",
-                      "label": "Average covered living space per person",
+                      "label": "Average covered living space per person (in m2)",
                       "level": "Contr. fact. individual and HH",
                       "preference": 1,
                       "evidence_type": "AN signal",
@@ -4101,7 +4072,7 @@
                         "van": null
                       },
                       "van_is_strict": null,
-                      "above_or_below": null,
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Coping",
@@ -4120,7 +4091,7 @@
                       "level": "Community or system level contributing factors",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
-                      "type": "int[0:1]",
+                      "type": "num[0:1]",
                       "msna_module": "Barriers to sanitation facilities",
                       "msna_indicator": "% of households having had problems related to sanitation facility access, by type of barrier",
                       "question_kobo_code": "wash_sanitation_access_issue",
@@ -4130,7 +4101,7 @@
                         "van": null
                       },
                       "van_is_strict": null,
-                      "above_or_below": null,
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Coping",
@@ -4495,7 +4466,7 @@
                         "van": null
                       },
                       "van_is_strict": null,
-                      "above_or_below": null,
+                      "above_or_below": "Above",
                       "evidence_threshold": 0,
                       "subfactor_threshold": 0,
                       "risk_concept": "Coping",
@@ -4659,7 +4630,7 @@
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "AN signal",
-                      "type": "num[0+]",
+                      "type": "num[0:30]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
@@ -5395,7 +5366,7 @@
                   "metrics": [
                     {
                       "metric": "MET179",
-                      "label": "Coverage of SC/ OTP/ SFP in IDP camps",
+                      "label": "% service coverage of SC/ OTP/ SFP in IDP camps",
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "AN signal",
@@ -5418,7 +5389,7 @@
                     },
                     {
                       "metric": "MET180",
-                      "label": "Coverage of SC/ OTP/ SFP in urban populations",
+                      "label": "% service coverage of SC/ OTP/ SFP in urban populations",
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "AN signal",
@@ -5441,7 +5412,7 @@
                     },
                     {
                       "metric": "MET181",
-                      "label": "Coverage of SC/ OTP/ SFP in rural populations",
+                      "label": "% service coverage of SC/ OTP/ SFP in rural populations",
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "AN signal",
@@ -5610,7 +5581,7 @@
                   "metrics": [
                     {
                       "metric": "MET194",
-                      "label": "% of households facing any financial barrier to accessing marketplaces, by barrier",
+                      "label": "% of households facing any financial barrier to accessing marketplaces",
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "Supporting evidence",
@@ -5871,7 +5842,7 @@
                   "metrics": [
                     {
                       "metric": "MET203",
-                      "label": "% of monitored items or categories for which # days of remaining stock â # days needed to restock < 1",
+                      "label": "% of monitored items or categories for which # days of remaining stock < # days needed to restock",
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "Supporting evidence",
@@ -5917,7 +5888,7 @@
                     },
                     {
                       "metric": "MET205",
-                      "label": "% of interviewed vendors mostly relying on a single supplier to stock their businesses (by category)",
+                      "label": "% of interviewed vendors mostly relying on a single supplier to stock their businesses",
                       "level": "Community or system level contributing factors",
                       "preference": 2,
                       "evidence_type": "Supporting evidence",
@@ -5950,7 +5921,7 @@
                       "level": "Community or system level contributing factors",
                       "preference": 1,
                       "evidence_type": "Supporting evidence",
-                      "type": "num[0:1]",
+                      "type": "num[0+]",
                       "msna_module": null,
                       "msna_indicator": null,
                       "question_kobo_code": null,
