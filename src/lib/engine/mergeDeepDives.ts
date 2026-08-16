@@ -117,7 +117,7 @@ function parseSummarySheet(ws: ExcelJS.Worksheet): {
 
 const CONCLUSION_TO_KEY: Record<string, string> = {
 	'RoEM':                  'roem',
-	'Acute Needs (!)':       'an_exclamation',
+	'Plausible RoEM':       'an_exclamation',
 	'Acute Needs':           'an',
 	'No Acute Needs':        'no_acute_needs',
 	'Insufficient evidence': 'insufficient_evidence',
