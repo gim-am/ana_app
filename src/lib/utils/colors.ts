@@ -241,7 +241,7 @@ export const getPriorityBadge = (key: string): FlagBadge | undefined =>
  */
 export const CONCLUSION_BADGE_MAP: Record<ConclusionKey, { label: string; bg: string }> = {
 	roem:                  { label: 'RoEM',                   bg: 'var(--color-conclusion-roem)'           },
-	an_exclamation:        { label: 'Acute Needs (!)',         bg: 'var(--color-conclusion-an-exclamation)' },
+	an_exclamation:        { label: 'Plausible RoEM',         bg: 'var(--color-conclusion-an-exclamation)' },
 	an:                    { label: 'Acute Needs',             bg: 'var(--color-conclusion-an)'             },
 	no_acute_needs:        { label: 'No Acute Needs',          bg: 'var(--color-no-acute)'                  },
 	insufficient_evidence: { label: 'Insufficient Evidence',   bg: 'var(--color-insufficient)'              },
