@@ -1,7 +1,7 @@
 /**
  * THIS FILE IS GENERATED — DO NOT EDIT BY HAND
  * Generated from: ../../../../static/data/reference.csv
- * Generated at: 2026-05-29T12:32:15.308Z
+ * Generated at: 2026-08-16T06:52:41.262Z
  */
 
 export enum MetricIDEnum {
@@ -91,7 +91,6 @@ export enum MetricIDEnum {
 	Met084 = 'MET084',
 	Met085 = 'MET085',
 	Met086 = 'MET086',
-	Met087 = 'MET087',
 	Met088 = 'MET088',
 	Met089 = 'MET089',
 	Met090 = 'MET090',
