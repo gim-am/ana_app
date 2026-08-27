@@ -75,17 +75,6 @@
 	{#if hoMetricIds.length === 0}
 		<p class="text-base-content/70 py-6 text-center text-sm">No Health Outcomes metrics found.</p>
 	{:else}
-		<!-- HO proportion rule guide -->
-		<div class="bg-base-200 mb-4 rounded-lg px-4 py-2.5 text-xs">
-			<span class="font-semibold">Proportion rule:</span>
-			{#if totalUoas > 5}
-				≥ 2/3 of available HO metrics AN-flagged → <span class="text-error font-semibold">ho_primary</span>
-			{:else if totalUoas >= 1}
-				≥ 1/2 of available HO metrics AN-flagged → <span class="text-error font-semibold">ho_primary</span>
-			{/if}
-			<span class="text-base-content/60 ml-2">(n = {totalUoas} UoA{totalUoas !== 1 ? 's' : ''})</span>
-		</div>
-
 		<div class="overflow-x-auto">
 			<table class="table table-xs w-full">
 				<thead>
@@ -103,7 +92,6 @@
 					{#each stats as s (s.id)}
 						{@const available = s.anFlagged + s.vanFlagged + s.noFlag}
 						{@const anPct = pct(s.anFlagged, available)}
-						{@const threshPct = Math.round(proportionThreshold * 100)}
 						{@const overThresh = available > 0 && s.anFlagged / available >= proportionThreshold}
 						<tr class:bg-error={overThresh} class:bg-opacity-5={overThresh}>
 							<td class="max-w-48 whitespace-normal text-xs font-medium">{s.label}</td>
@@ -148,12 +136,6 @@
 										<div
 											class="absolute inset-y-0 left-0 rounded-sm"
 											style="width: {anPct}%; background-color: var(--color-flag)"
-										></div>
-										<!-- Threshold marker -->
-										<div
-											class="absolute inset-y-0 w-px bg-base-content opacity-50"
-											style="left: {threshPct}%"
-											title="{threshPct}% threshold"
 										></div>
 									</div>
 									<span class="text-base-content/60 mt-0.5 block text-right text-xs"
