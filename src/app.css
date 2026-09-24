@@ -19,9 +19,6 @@
    Neutral brand: #000000 (black)
    Base: cool blue-slate, clearly not white — gives the app character        */
 @theme 'ana-light'  {
-	name: 'ana-light';
-	default: false;
-	prefersdark: false;
 
 	/* Base — near-white cards on a cool blue-grey canvas */
 	--color-base-100: oklch(99% 0.003 248);
@@ -123,9 +120,6 @@
 /* ── Dark theme ──────────────────────────────────────────────────────────────
    Deep navy base — rich contrast, not washed out grey                       */
 @theme 'ana-dark' {
-	name: 'ana-dark';
-	default: true;
-	prefersdark: true;
 
 	/* Base — dark navy cards on a near-black canvas; chroma kept calm */
 	--color-base-100: oklch(25% 0.014 240);
