@@ -18,7 +18,8 @@
    Primary brand: #345a74 → screen-boosted to oklch(45% 0.12 240) for vibrancy
    Neutral brand: #000000 (black)
    Base: cool blue-slate, clearly not white — gives the app character        */
-@theme 'ana-light'  {
+:root,
+[data-theme='ana-light'] {
 
 	/* Base — near-white cards on a cool blue-grey canvas */
 	--color-base-100: oklch(99% 0.003 248);
@@ -87,20 +88,16 @@
 	--color-no-acute: oklch(84% 0.143 164.978);
 	--color-priority-em-tint: color-mix(in srgb, var(--color-priority-em) 30%, white);
 	--color-priority-ho-primary-tint: color-mix(in srgb, var(--color-priority-ho-primary) 28%, white);
-	--color-priority-ho-secondary-tint: color-mix(
-		in srgb,
-		var(--color-priority-ho-secondary) 35%,
-		white
-	);
-	--color-priority-an-secondary-tint: color-mix(
-		in srgb,
-		var(--color-priority-an-secondary) 40%,
-		white
-	);
+	--color-priority-ho-secondary-tint: color-mix(in srgb,
+			var(--color-priority-ho-secondary) 35%,
+			white);
+	--color-priority-an-secondary-tint: color-mix(in srgb,
+			var(--color-priority-an-secondary) 40%,
+			white);
 	--color-no-acute-tint: color-mix(in srgb, var(--color-no-acute) 35%, white);
-	--color-conclusion-roem:           #EE5859;
+	--color-conclusion-roem: #EE5859;
 	--color-conclusion-an-exclamation: #F1797A;
-	--color-conclusion-an:             #F49A9B;
+	--color-conclusion-an: #F49A9B;
 
 	/* ── Badge text colour tokens (light) ───────────────────────────────────*/
 	--color-badge-flag-text: white;
@@ -119,7 +116,7 @@
 
 /* ── Dark theme ──────────────────────────────────────────────────────────────
    Deep navy base — rich contrast, not washed out grey                       */
-@theme 'ana-dark' {
+[data-theme='ana-dark'] {
 
 	/* Base — dark navy cards on a near-black canvas; chroma kept calm */
 	--color-base-100: oklch(25% 0.014 240);
@@ -177,11 +174,9 @@
 	--color-flag-tint: color-mix(in srgb, var(--color-flag) 49%, var(--color-base-200));
 	--color-no-flag-tint: color-mix(in srgb, var(--color-no-flag) 49%, var(--color-base-200));
 	--color-no-data-tint: color-mix(in srgb, var(--color-no-data) 55%, var(--color-base-200));
-	--color-insufficient-tint: color-mix(
-		in srgb,
-		var(--color-insufficient) 45%,
-		var(--color-base-200)
-	);
+	--color-insufficient-tint: color-mix(in srgb,
+			var(--color-insufficient) 45%,
+			var(--color-base-200));
 	--color-no-flag-hover: color-mix(in srgb, var(--color-secondary) 64%, var(--color-base-200));
 
 	/* ── Priority flag colour tokens (dark) ─────────────────────────────── */
@@ -191,25 +186,19 @@
 	--color-priority-an-secondary: oklch(88% 0.1 240);
 	--color-no-acute: oklch(72% 0.143 164.978);
 	--color-priority-em-tint: color-mix(in srgb, var(--color-priority-em) 46%, var(--color-base-200));
-	--color-priority-ho-primary-tint: color-mix(
-		in srgb,
-		var(--color-priority-ho-primary) 46%,
-		var(--color-base-200)
-	);
-	--color-priority-ho-secondary-tint: color-mix(
-		in srgb,
-		var(--color-priority-ho-secondary) 42%,
-		var(--color-base-200)
-	);
-	--color-priority-an-secondary-tint: color-mix(
-		in srgb,
-		var(--color-priority-an-secondary) 46%,
-		var(--color-base-200)
-	);
+	--color-priority-ho-primary-tint: color-mix(in srgb,
+			var(--color-priority-ho-primary) 46%,
+			var(--color-base-200));
+	--color-priority-ho-secondary-tint: color-mix(in srgb,
+			var(--color-priority-ho-secondary) 42%,
+			var(--color-base-200));
+	--color-priority-an-secondary-tint: color-mix(in srgb,
+			var(--color-priority-an-secondary) 46%,
+			var(--color-base-200));
 	--color-no-acute-tint: color-mix(in srgb, var(--color-no-acute) 40%, var(--color-base-200));
-	--color-conclusion-roem:           oklch(50% 0.17 27);
+	--color-conclusion-roem: oklch(50% 0.17 27);
 	--color-conclusion-an-exclamation: oklch(57% 0.13 22);
-	--color-conclusion-an:             oklch(65% 0.09 18);
+	--color-conclusion-an: oklch(65% 0.09 18);
 
 	/* ── Badge text colour tokens (dark) ────────────────────────────────── */
 	--color-badge-flag-text: black;
@@ -256,26 +245,18 @@
 
 	/* health_outcomes */
 	--color-sys-health-outcomes: #a8201a;
-	--color-sys-health-outcomes-d1: color-mix(
-		in srgb,
-		var(--color-sys-health-outcomes) 15%,
-		transparent
-	);
-	--color-sys-health-outcomes-d2: color-mix(
-		in srgb,
-		var(--color-sys-health-outcomes) 40%,
-		transparent
-	);
-	--color-sys-health-outcomes-d3: color-mix(
-		in srgb,
-		var(--color-sys-health-outcomes) 70%,
-		transparent
-	);
-	--color-sys-health-outcomes-d4: color-mix(
-		in srgb,
-		var(--color-sys-health-outcomes) 90%,
-		transparent
-	);
+	--color-sys-health-outcomes-d1: color-mix(in srgb,
+			var(--color-sys-health-outcomes) 15%,
+			transparent);
+	--color-sys-health-outcomes-d2: color-mix(in srgb,
+			var(--color-sys-health-outcomes) 40%,
+			transparent);
+	--color-sys-health-outcomes-d3: color-mix(in srgb,
+			var(--color-sys-health-outcomes) 70%,
+			transparent);
+	--color-sys-health-outcomes-d4: color-mix(in srgb,
+			var(--color-sys-health-outcomes) 90%,
+			transparent);
 	--color-sys-health-outcomes-d5: var(--color-sys-health-outcomes);
 
 	/* mortality */
@@ -288,74 +269,50 @@
 
 	/* living_conditions */
 	--color-sys-living-conditions: #dbb957;
-	--color-sys-living-conditions-d1: color-mix(
-		in srgb,
-		var(--color-sys-living-conditions) 15%,
-		transparent
-	);
-	--color-sys-living-conditions-d2: color-mix(
-		in srgb,
-		var(--color-sys-living-conditions) 40%,
-		transparent
-	);
-	--color-sys-living-conditions-d3: color-mix(
-		in srgb,
-		var(--color-sys-living-conditions) 70%,
-		transparent
-	);
-	--color-sys-living-conditions-d4: color-mix(
-		in srgb,
-		var(--color-sys-living-conditions) 90%,
-		transparent
-	);
+	--color-sys-living-conditions-d1: color-mix(in srgb,
+			var(--color-sys-living-conditions) 15%,
+			transparent);
+	--color-sys-living-conditions-d2: color-mix(in srgb,
+			var(--color-sys-living-conditions) 40%,
+			transparent);
+	--color-sys-living-conditions-d3: color-mix(in srgb,
+			var(--color-sys-living-conditions) 70%,
+			transparent);
+	--color-sys-living-conditions-d4: color-mix(in srgb,
+			var(--color-sys-living-conditions) 90%,
+			transparent);
 	--color-sys-living-conditions-d5: var(--color-sys-living-conditions);
 
 	/* market_functionality */
 	--color-sys-market-functionality: #b47eb3;
-	--color-sys-market-functionality-d1: color-mix(
-		in srgb,
-		var(--color-sys-market-functionality) 15%,
-		transparent
-	);
-	--color-sys-market-functionality-d2: color-mix(
-		in srgb,
-		var(--color-sys-market-functionality) 40%,
-		transparent
-	);
-	--color-sys-market-functionality-d3: color-mix(
-		in srgb,
-		var(--color-sys-market-functionality) 70%,
-		transparent
-	);
-	--color-sys-market-functionality-d4: color-mix(
-		in srgb,
-		var(--color-sys-market-functionality) 90%,
-		transparent
-	);
+	--color-sys-market-functionality-d1: color-mix(in srgb,
+			var(--color-sys-market-functionality) 15%,
+			transparent);
+	--color-sys-market-functionality-d2: color-mix(in srgb,
+			var(--color-sys-market-functionality) 40%,
+			transparent);
+	--color-sys-market-functionality-d3: color-mix(in srgb,
+			var(--color-sys-market-functionality) 70%,
+			transparent);
+	--color-sys-market-functionality-d4: color-mix(in srgb,
+			var(--color-sys-market-functionality) 90%,
+			transparent);
 	--color-sys-market-functionality-d5: var(--color-sys-market-functionality);
 
 	/* health_nutrition_services */
 	--color-sys-health-nutrition-services: #e49273;
-	--color-sys-health-nutrition-services-d1: color-mix(
-		in srgb,
-		var(--color-sys-health-nutrition-services) 15%,
-		transparent
-	);
-	--color-sys-health-nutrition-services-d2: color-mix(
-		in srgb,
-		var(--color-sys-health-nutrition-services) 40%,
-		transparent
-	);
-	--color-sys-health-nutrition-services-d3: color-mix(
-		in srgb,
-		var(--color-sys-health-nutrition-services) 70%,
-		transparent
-	);
-	--color-sys-health-nutrition-services-d4: color-mix(
-		in srgb,
-		var(--color-sys-health-nutrition-services) 90%,
-		transparent
-	);
+	--color-sys-health-nutrition-services-d1: color-mix(in srgb,
+			var(--color-sys-health-nutrition-services) 15%,
+			transparent);
+	--color-sys-health-nutrition-services-d2: color-mix(in srgb,
+			var(--color-sys-health-nutrition-services) 40%,
+			transparent);
+	--color-sys-health-nutrition-services-d3: color-mix(in srgb,
+			var(--color-sys-health-nutrition-services) 70%,
+			transparent);
+	--color-sys-health-nutrition-services-d4: color-mix(in srgb,
+			var(--color-sys-health-nutrition-services) 90%,
+			transparent);
 	--color-sys-health-nutrition-services-d5: var(--color-sys-health-nutrition-services);
 
 	/* protection */
@@ -385,6 +342,7 @@
 [data-theme='ana-light'] .logo-dark {
 	display: none;
 }
+
 [data-theme='ana-dark'] .logo-light {
 	display: none;
 }
