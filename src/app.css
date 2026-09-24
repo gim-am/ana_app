@@ -12,14 +12,7 @@
 	--font-hand: 'Gloria Hallelujah';
 }
 
-@plugin 'daisyui' {
-	themes: ana-light, ana-dark;
-	root: ':root';
-	include:;
-	exclude:;
-	prefix:;
-	logs: true;
-}
+@plugin 'daisyui';
 
 /* ── Light theme ─────────────────────────────────────────────────────────────
    Primary brand: #345a74 → screen-boosted to oklch(45% 0.12 240) for vibrancy
