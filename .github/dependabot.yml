@@ -9,8 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-      day: "sunday"
-      time: "06:00"
+      time: "04:00"
     cooldown:
       default-days: 7
     groups:
@@ -19,9 +18,8 @@ updates:
   - package-ecosystem: "bun"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "06:00"
+      interval: "monthly"
+      time: "04:00"
     groups:
       all-dependencies:
         patterns: ["*"]
